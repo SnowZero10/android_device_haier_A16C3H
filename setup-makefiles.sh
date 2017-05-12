@@ -131,8 +131,8 @@ PRODUCT_PACKAGES += \\
 PRODUCT_PACKAGES += \\
     imscmlibrary
 
-#PRODUCT_PACKAGES += \\
-#    ims
+PRODUCT_PACKAGES += \\
+    tcmiface
 
 PRODUCT_PACKAGES += \\
     com.qualcomm.location
@@ -448,15 +448,6 @@ LOCAL_CERTIFICATE := PRESIGNED
 include \$(BUILD_PREBUILT)
 
 ifeq (\$(filter aosp_A16C3H,\$(PRODUCT_NAME)),)
-include \$(CLEAR_VARS)
-LOCAL_MODULE := tcmiface
-LOCAL_MODULE_OWNER := $VENDOR
-LOCAL_SRC_FILES := proprietary/system/framework/tcmiface.jar
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := \$(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_MODULE_CLASS := JAVA_LIBRARIES
-LOCAL_CERTIFICATE := PRESIGNED
-include \$(BUILD_PREBUILT)
 
 include \$(CLEAR_VARS)
 LOCAL_MODULE := oem-services

@@ -1015,9 +1015,6 @@ vendor/lib/libvt_engine.so
 # ui blur
 vendor/lib/libuiblur.so
 
-# tcmiface
--framework/tcmiface.jar
-
 # oem-services
 -framework/oem-services.jar
 
