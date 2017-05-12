@@ -73,7 +73,8 @@ PRODUCT_PACKAGES += \
     camera.msm8909 \
     libmmjpeg_interface \
     libqomx_core \
-    libmmcamera_interface
+    libmmcamera_interface \
+    libmm-qcamera
 
 # Charger
 PRODUCT_PACKAGES += \
