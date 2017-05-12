@@ -24,8 +24,8 @@ endif
 
 # this is for libstagefright
 ifeq ($(AUDIO_FEATURE_ENABLED_FLAC_OFFLOAD),true)
-$(shell cp -l $(TOP)hardware/qcom/audio/hal/audio_extn/*.h \
-              $(TOP)frameworks/av/media/libstagefright/
+    $(shell cp hardware/qcom/audio/hal/audio_extn/audio_defs.h \
+               frameworks/av/media/libstagefright/ )
 endif #AUDIO_FEATURE_ENABLED_FLAC_OFFLOAD
 
 ifeq ($(strip $(BOARD_USES_SRS_TRUEMEDIA)),true)
