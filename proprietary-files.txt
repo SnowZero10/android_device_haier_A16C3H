@@ -94,6 +94,10 @@ bin/sapd
 bin/btconfig
 
 # cne
+-framework/cneapiclient.jar
+etc/permissions/cneapiclient.xml
+-framework/com.quicinc.cne.jar
+etc/permissions/com.quicinc.cne.xml
 bin/cnd
 etc/cne/SwimConfig.xml
 etc/cne/andsfCne.xml
@@ -145,6 +149,9 @@ vendor/lib/libdpmfdmgr.so
 vendor/lib/libdpmframework.so
 vendor/lib/libdpmnsrm.so
 vendor/lib/libdpmtcm.so
+-framework/dpmapi.jar
+etc/permissions/dpmapi.xml
+-framework/com.qti.dpmframework.jar
 
 # DRM
 vendor/lib/libdrmfs.so
@@ -790,6 +797,7 @@ etc/firmware/Signedrompatch_v30.bin
 vendor/lib/libSubSystemShutdown.so
 vendor/lib/libsubsystem_control.so
 vendor/lib/libbccQTI.so
+-app/shutdownlistener/shutdownlistener.apk
 
 #OPENCORE
 vendor/lib/libomx_amrdec_sharedlibrary.so
@@ -874,7 +882,9 @@ etc/permissions/qti_permissions.xml
 # wipower
 lib/hw/wbc_hal.default.so
 vendor/lib/libwbc_jni.so
+-framework/com.quicinc.wbc.jar
 etc/permissions/com.quicinc.wbc.xml
+-framework/com.quicinc.wbcservice.jar
 
 # wlan
 bin/ptt_socket_app
@@ -1005,3 +1015,41 @@ vendor/lib/libvt_engine.so
 # ui blur
 vendor/lib/libuiblur.so
 
+# tcmiface
+-framework/tcmiface.jar
+
+# oem-services
+-framework/oem-services.jar
+
+# rcs
+-framework/rcsimssettings.jar
+-framework/rcsservice.jar
+
+# btmultisim
+-framework/btmultisimlibrary.jar
+-app/btmultisim/btmultisim.apk
+etc/permissions/btmultisim.xml
+
+# smartsearch
+-framework/smartsearch.jar
+etc/permissions/com.qualcomm.qti.smartsearch.xml
+
+# wap push
+-framework/com.qrd.wappush.jar
+etc/permissions/com.qrd.wappush.xml
+
+# snapdragon.sdk.display
+-framework/com.qti.snapdragon.sdk.display.jar
+etc/permissions/com.qti.snapdragon.sdk.display.xml
+
+# interface permissions
+etc/permissions/interface_permissions.xml
+-app/InterfacePermissions/InterfacePermissions.apk
+-app/QComQMIPermissions/QComQMIPermissions.apk
+
+# telephony-apps
+-app/fastdormancy/fastdormancy.apk
+-app/GsmTuneAway/GsmTuneAway.apk
+-app/NetworkSetting/NetworkSetting.apk
+-app/SimContacts/SimContacts.apk
+-app/xdivert/xdivert.apk
