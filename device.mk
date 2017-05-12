@@ -291,6 +291,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libxml2
 
+# Tinyxml
+PRODUCT_PACKAGES += \
+    libtinyxml2
+
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
