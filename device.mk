@@ -184,6 +184,11 @@ PRODUCT_PACKAGES += \
     ft5x06_ts.kl \
     atmel_mxt_ts.kl
 
+# msm8909_x20_g151 keylayout
+PRODUCT_PACKAGES += \
+    msg2xxx.kl \
+    qpnp_pon.kl
+
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8909
