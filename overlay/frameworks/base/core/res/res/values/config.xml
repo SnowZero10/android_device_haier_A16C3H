@@ -106,9 +106,6 @@
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
     <bool name="config_unplugTurnsOnScreen">true</bool>
 
-    <!-- Configuration to support rotation lock toggle -->
-    <bool name="config_forceSupportRotationLockToggle">true</bool>
-
     <!-- If true, the screen can be rotated via the accelerometer in all 4
          rotations as the default behavior. -->
     <bool name="config_allowAllRotations">true</bool>
@@ -301,12 +298,6 @@
     <!-- Flag indicating if the speed up audio on mt call code should be executed -->
     <bool name="config_speed_up_audio_on_mt_calls">true</bool>
 
-    <!-- Button back light brightness value, 2 means 10 mA, friendly user light brightness -->
-    <integer name="config_button_light_bright_level">2</integer>
-    <!-- Button back light brightness friendly time break. -->
-    <integer name="config_button_light_timeout_msec">4000</integer>
-    <bool name="config_button_light_enabled">true</bool>
-
     <!-- Defines the default set of global actions. Actions may still be disabled or hidden based
          on the current state of the device.
          Each item must be one of the following strings:
@@ -359,46 +350,11 @@
     <!-- Configuration to sending and receiving Mms when mobile data is disable.-->
     <bool name="config_enable_mms_with_mobile_data_off">true</bool>
 
-    <!-- Configuartion to set zen mode when silent mode is on -->
-    <bool name="config_setZenModeWhenSilentModeOn">true</bool>
-
     <!-- Configuration to enable non-default PDP during IWLAN -->
     <bool name="config_feature_iwlan_enabled">true</bool>
-
-    <!-- Whether cpu boost is enabled for AppLaunch -->
-    <bool name="config_enableCpuBoostForAppLaunch">true</bool>
-    <integer name="disablepacking_timeout_param">5000</integer>
-    <integer name="launchboost_timeout_param">2000</integer>
-    <integer name="launchboost_cpuboost_param">0x20C</integer>
-    <integer name="launchboost_pcdisbl_param">0x101</integer>
-    <integer name="launchboost_ksmboost_param">0x1C00</integer>
-    <integer name="launchboost_smtaskboost_param">0x4001</integer>
-    <integer name="launchboost_idleloadboost_param">0x4101</integer>
-    <integer name="launchboost_idlenrrunboost_param">0x4201</integer>
-    <integer name="launchboost_preferidle_param">0x3E01</integer>
-    <integer name="launchboost_cpunumboost_param">0x704</integer>
 
     <!-- Support for disabling to fetch APN from OMH card
          for some cdma carriers -->
     <bool name="config_fetch_apn_from_omh_card">false</bool>
-
-    <!-- Whether cpu boost is enabled for animation during exit and entry -->
-    <bool name="config_enablePerfBoostForAnimation">true</bool>
-    <integer name="animationboost_cpuboost_param">0x20B</integer>
-    <integer name="animationboost_timeout_param">600</integer>
-
-    <!-- Whether cpu boost is enabled for overscroller fling. -->
-    <bool name="config_enableCpuBoostForOverScrollerFling">true</bool>
-    <integer name="flingboost_cpuboost_param">0x20B</integer>
-    <integer name="flingboost_preferidle_param">0x3E01</integer>
-
-    <bool name="config_enableCpuBoostForScroller">true</bool>
-    <integer name="scrollboost_cpuboost_param">0x20B</integer>
-    <integer name="scrollboost_preferidle_param">0x3E01</integer>
-
-    <!-- Activity scroll boost params -->
-    <integer name="ascrollboost_timeout">17</integer>
-    <integer name="ascrollboost_cpuboost">0x20B</integer>
-    <integer name="ascrollboost_pcdisbl">0x101</integer>
 
 </resources>
