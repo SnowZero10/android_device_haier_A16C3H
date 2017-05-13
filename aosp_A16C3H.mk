@@ -87,4 +87,11 @@ SKIP_BOOT_JARS_CHECK := true
 PRODUCT_VERITY_PARTITION=/dev/block/bootdevice/by-name/system
 $(call inherit-product, build/target/product/verity.mk)
 
+DEVICE_PACKAGE_OVERLAYS += \
+    device/qcom/common/device/overlay \
+    device/qcom/msm8909/overlay
+
+PRODUCT_PACKAGE_OVERLAYS += \
+    device/qcom/common/product/overlay
+
 PRODUCT_NAME := aosp_A16C3H
