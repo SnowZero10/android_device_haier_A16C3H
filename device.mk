@@ -84,6 +84,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libcnefeatureconfig
 
+# CM
+PRODUCT_PACKAGES += \
+    CMFileManager \
+    Trebuchet \
+    Eleven
+
 # Curl
 PRODUCT_PACKAGES += \
     libcurl \
