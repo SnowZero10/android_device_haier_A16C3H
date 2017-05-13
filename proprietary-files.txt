@@ -1060,4 +1060,4 @@ etc/permissions/interface_permissions.xml
 -app/GsmTuneAway/GsmTuneAway.apk
 -app/NetworkSetting/NetworkSetting.apk
 -app/SimContacts/SimContacts.apk
-app/xdivert/xdivert.apk
+-app/xdivert/xdivert.apk
