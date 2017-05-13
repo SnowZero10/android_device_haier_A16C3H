@@ -942,7 +942,7 @@ lib/modules/spidev.ko
 lib/modules/test-iosched.ko
 
 # sensors
-#lib/hw/sensors.msm8909.so
+lib/hw/sensors.msm8909.so
 vendor/etc/calmodule.cfg
 vendor/lib/libcalmodule_common.so
 vendor/lib/libcalmodule_gyroscope.so
