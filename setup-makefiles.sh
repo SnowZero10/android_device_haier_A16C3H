@@ -164,8 +164,7 @@ PRODUCT_PACKAGES += \\
     fastdormancy \\
     GsmTuneAway \\
     NetworkSetting \\
-    SimContacts \\
-    xdivert
+    SimContacts
 
 PRODUCT_PACKAGES += \\
     rcsimssettings \\
@@ -629,16 +628,6 @@ include \$(CLEAR_VARS)
 LOCAL_MODULE := SimContacts
 LOCAL_MODULE_OWNER := $VENDOR
 LOCAL_SRC_FILES := proprietary/system/app/SimContacts/SimContacts.apk
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_MODULE_CLASS := APPS
-LOCAL_CERTIFICATE := platform
-include \$(BUILD_PREBUILT)
-
-include \$(CLEAR_VARS)
-LOCAL_MODULE := xdivert
-LOCAL_MODULE_OWNER := $VENDOR
-LOCAL_SRC_FILES := proprietary/system/app/xdivert/xdivert.apk
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_CLASS := APPS
