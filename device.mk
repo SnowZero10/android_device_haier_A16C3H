@@ -346,10 +346,20 @@ PRODUCT_PACKAGES += \
     minigzip \
     libunz
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.default_network=9
+
 #DTS
 PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.disable=1 \
     lpa.decode=false
+
+# System property for svi
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qualcomm.svi=1
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    mm.enable.qcom_parser=3407871
 
 # Set the default build as dsds
 PRODUCT_PROPERTY_OVERRIDES += \
