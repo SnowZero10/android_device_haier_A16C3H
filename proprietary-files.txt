@@ -1027,6 +1027,17 @@ vendor/lib/libuiblur.so
 -app/btmultisim/btmultisim.apk
 etc/permissions/btmultisim.xml
 
+# qmapbridge
+-framework/qmapbridge.jar
+
+# tcmclient
+-framework/tcmclient.jar
+
+# videocallapi
+-framework/videocallapi.jar
+etc/permissions/videocallapi.xml
+etc/permissions/com.qti.videocall.permissions.xml
+
 # smartsearch
 -framework/smartsearch.jar
 etc/permissions/com.qualcomm.qti.smartsearch.xml
