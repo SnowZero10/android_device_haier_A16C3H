@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2013, Qualcomm Technologies, Inc.
+ * All Rights Reserved.
+ * Qualcomm Technologies Proprietary and Confidential.
+ */
+-->
+<spnOverrides>
+    <!--Indonesia -->
+    <spnOverride numeric="51010" spn="Telkomsel"  />
+    <spnOverride numeric="51028" spn="Smartfren"  />
+</spnOverrides>

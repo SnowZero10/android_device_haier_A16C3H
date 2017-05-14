@@ -303,6 +303,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libxml2
 
+# Spn
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/spn-conf.xml:system/etc/spn-conf.xml
+
 # Tinyxml
 PRODUCT_PACKAGES += \
     libtinyxml2
