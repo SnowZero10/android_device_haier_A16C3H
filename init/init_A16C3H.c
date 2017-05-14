@@ -90,7 +90,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     /* msm8909_x20_g151 */
     if (raw_id==2400) {
         property_set("ro.product.model", "Andromax A A16C3H");
-
+        property_set(PROP_LCDDENSITY, "240");
     }
 
     /* lainnya? */
