@@ -1,0 +1,65 @@
+From bc3a2ba91b0f7bebcd3c26fe395439c87c0a0efc Mon Sep 17 00:00:00 2001
+From: alexforsale <alexforsale@yahoo.com>
+Date: Sun, 14 May 2017 15:37:25 +0700
+Subject: [PATCH] init: add TARGET_LIBINIT_DEFINES_FILE
+
+Change-Id: Ie973f69c7efc4a6a1266a76f419cd56227ebf846
+---
+ init/Android.mk | 8 ++++++--
+ init/init_msm.c | 2 +-
+ init/init_msm.h | 1 -
+ 3 files changed, 7 insertions(+), 4 deletions(-)
+
+diff --git device/qcom/common/init/Android.mk device/qcom/qcommon/init/Android.mk
+index 3ece110..18ead64 100644
+--- device/qcom/common/init/Android.mk
++++ device/qcom/qcommon/init/Android.mk
+@@ -3,7 +3,7 @@ ifeq ($(TARGET_INIT_VENDOR_LIB),libinit_msm)
+ LOCAL_PATH := $(call my-dir)
+ LIBINIT_MSM_PATH := $(call my-dir)
+ 
+-LIBINIT_USE_MSM_DEFAULT := $(shell if [ ! -f $(LIBINIT_MSM_PATH)/init_$(TARGET_BOARD_PLATFORM).c ]; then echo true; fi)
++LIBINIT_USE_MSM_DEFAULT := $(shell if [ ! -f "$(LIBINIT_MSM_PATH)/init_$(TARGET_BOARD_PLATFORM).c" ]; then echo true; fi)
+ 
+ include $(CLEAR_VARS)
+ LOCAL_MODULE_TAGS := optional
+@@ -13,7 +13,11 @@ LOCAL_SRC_FILES := init_msm.c
+ ifeq ($(LIBINIT_USE_MSM_DEFAULT),true)
+   LOCAL_SRC_FILES += init_msmdefault.c
+ else
+-  LOCAL_SRC_FILES += init_$(TARGET_BOARD_PLATFORM).c
++  ifneq ($(TARGET_LIBINIT_DEFINES_FILE),)
++    LOCAL_SRC_FILES += ../../../../$(TARGET_LIBINIT_DEFINES_FILE)
++  else
++    LOCAL_SRC_FILES += init_$(TARGET_BOARD_PLATFORM).c
++  endif
+ endif
+ LOCAL_MODULE := libinit_msm
+ include $(BUILD_STATIC_LIBRARY)
+diff --git device/qcom/common/init/init_msm.c device/qcom/qcommon/init/init_msm.c
+index c68f801..2b72a6b 100644
+--- device/qcom/common/init/init_msm.c
++++ device/qcom/qcommon/init/init_msm.c
+@@ -73,7 +73,7 @@ void init_msm_properties(unsigned long soc, unsigned long socrev, char *board)
+     UNUSED(board);
+ }
+ 
+-int read_file2(const char *fname, char *data, int max_size)
++static int read_file2(const char *fname, char *data, int max_size)
+ {
+     int fd, rc;
+ 
+diff --git device/qcom/common/init/init_msm.h device/qcom/qcommon/init/init_msm.h
+index 24e02aa..091daef 100644
+--- device/qcom/common/init/init_msm.h
++++ device/qcom/qcommon/init/init_msm.h
+@@ -42,6 +42,5 @@
+ #define ISMATCH(a,b)    (!strncmp(a,b,PROP_VALUE_MAX))
+ 
+ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type);
+-int read_file2(const char *fname, char *data, int max_size);
+ 
+ #endif /* __INIT_MSM__H__ */
+-- 
+2.13.0
+
