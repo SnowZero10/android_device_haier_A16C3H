@@ -1,0 +1,32 @@
+From ee113ca5c9a6e996cd3569b22d033754e91e7cfe Mon Sep 17 00:00:00 2001
+From: alexforsale <alexforsale@yahoo.com>
+Date: Tue, 9 May 2017 23:54:28 +0700
+Subject: [PATCH] add permission for external storage
+
+Change-Id: Ib3a991ca082399a629ed08846758324c212f8f5d
+---
+ data/etc/platform.xml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git frameworks/base/data/etc/platform.xml frameworks/base/data/etc/platform.xml
+index 51271bfb..62147b3e 100644
+--- frameworks/base/data/etc/platform.xml
++++ frameworks/base/data/etc/platform.xml
+@@ -65,12 +65,14 @@
+     <permission name="android.permission.WRITE_EXTERNAL_STORAGE" >
+         <group gid="sdcard_r" />
+         <group gid="sdcard_rw" />
++        <group gid="media_rw" />
+     </permission>
+ 
+     <permission name="android.permission.ACCESS_ALL_EXTERNAL_STORAGE" >
+         <group gid="sdcard_r" />
+         <group gid="sdcard_rw" />
+         <group gid="sdcard_all" />
++        <group gid="media_rw" />
+     </permission>
+ 
+     <permission name="android.permission.WRITE_MEDIA_STORAGE" >
+-- 
+2.12.2
+

@@ -1,0 +1,29 @@
+From d5a9645c20667912689d37531ace6adfc37453b3 Mon Sep 17 00:00:00 2001
+From: alexforsale <alexforsale@yahoo.com>
+Date: Fri, 14 Apr 2017 19:00:25 +0700
+Subject: [PATCH] fix build error unsupported-reloc-43.
+
+    http://stackoverflow.com/questions/36048358/building-android-from-sources-unsupported-reloc-43
+
+Change-Id: Ia49f016d3e7f42fe2147d3ff43ca3f486bba59c3
+---
+ core/clang/HOST_x86_common.mk | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git build/core/clang/HOST_x86_common.mk build/core/clang/HOST_x86_common.mk
+index 0241cb663..12a6a4e5a 100644
+--- build/core/clang/HOST_x86_common.mk
++++ build/core/clang/HOST_x86_common.mk
+@@ -12,7 +12,8 @@ CLANG_CONFIG_x86_LINUX_HOST_EXTRA_ASFLAGS := \
+ 
+ CLANG_CONFIG_x86_LINUX_HOST_EXTRA_CFLAGS := \
+   --gcc-toolchain=$($(clang_2nd_arch_prefix)HOST_TOOLCHAIN_FOR_CLANG) \
+-  -no-integrated-as
++  -no-integrated-as \
++  -B$($(clang_2nd_arch_prefix)HOST_TOOLCHAIN_FOR_CLANG)/x86_64-linux/bin
+ 
+ ifneq ($(strip $($(clang_2nd_arch_prefix)HOST_IS_64_BIT)),)
+ CLANG_CONFIG_x86_LINUX_HOST_EXTRA_CPPFLAGS := \
+-- 
+2.12.2
+

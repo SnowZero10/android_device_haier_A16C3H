@@ -1,0 +1,138 @@
+#+TITLE: Device tree untuk Smartfren Andromax-A / Haier A16C3H
+#+DESCRIPTION: Untuk source Codeaurora AOSP manifest LA.BR.1.2.3-13810-8x09.0
+#+AUTHOR: alexforsale
+#+EMAIL: alexforsale@yahoo.com
+#+DATE: <2017-05-16 Tue>
+
+* About This tree
+Device tree ini merupakan attempt yang entah keberapa kalinya... Sekali lagi ini bukan sesuatu
+yang serius, ataupun dikerjakan dengan cepat, ~this is just a hobby~.
+
+* Device
+** Specification
+| Basic                   | Spec Sheet                                |
+|-------------------------+-------------------------------------------|
+| CPU                     | Quad Core 1.1 Ghz Cortex-A7               |
+| Chipset                 | Qualcomm Snapdragon 210                   |
+| GPU                     | Adreno 304                                |
+| Memory                  | 1GB RAM                                   |
+| Shipped Android Version | 5.1.1                                     |
+| Storage                 | 8GB                                       |
+| MicroSD                 | up to 32GB                                |
+| Battery                 | 1.950 mAh                                 |
+| Display                 | 480 x 854 pixels (~294 ppi pixel density) |
+| Camera(Primary)         | 5MP, Autofocus, LED Flash                 |
+
+** Pulling OTA updates
+Sampai dengan penulisan dokumentasi ini, update resmi terakhir adalah v5.6 (november 2016). Dan sepertinya masih belum bisa untuk unlock password usb debugging.
+- Menggunakan shortcutmaker untuk masuk ke ~TestList~ activity menghasilkan permission denied.
+- Aplikasi usb debugging password generator gagal.
+Jadi tampaknya untuk saat ini solusi satu - satu-nya adalah restore kembali ke firmware pabrikan (sebelum OTA update), yang sebenarnya sangat disayangkan karena file vendor dari OTA terakhir sangat bagus. Setidaknya menunggu sampai ada yang berhasil membobol password usb debugging, atau ada cara lain untuk memasuki mode fastboot. Karena fastboot ini yang dibutuhkan untuk flashing ke partisi di dalam device.
+** extract-files.sh
+Saya sengaja tidak menggunakan tree khusus untuk vendor blob, jadi metode untuk mendapatkan blob - blob tersebut hanya melalui adb
+atau file extract dari zip stock rom. Pastikan sebelumnya rom sudah deodex, jika belum bisa gunakan tools [[https://github.com/lord-ralf-adolf/Lordroid_One_Deodexer_To_Rule_Them_ALL][ini]]. Tinggal jalankan script [[file:extract-files.sh][extract-files.sh]],
+jika menggunakan adb, atau tambahkan path ke folder extract jika ingin menggunakan folder.
+
+* Syncing The Repo
+https://source.android.com/source/requirements sudah mencakup semua requirement yang diperlukan, juga cek https://source.android.com/source/initializing
+untuk setting up environment linux, jdk dan lainnya.
+
+jalankan perintah ini untuk sync dengan repository codeaurora-nya.
+
+#+begin_src sh
+repo init -u git://codeaurora.org/platform/manifest.git -b release -m LA.BR.1.2.3-13810-8x09.0.xml --repo-url=git://codeaurora.org/tools/repo.git --repo-branch=caf-stable
+#+end_src
+
+Tambahkan ~--depth=1~ dibelakang perintah repo sync diatas jika ingin menghemat bandwidth, dengan ini history commit yang didownload dibatasi 1.
+
+* Patches and workaround
+Semua patch yang dibutuhkan untuk proses /compiling/ akan disimpan disubfolder patches. Pastinya akan membutuhkan patches dan
+workaround mengingat device ini tidak memiliki source kernel. Semua patch yang ada difolder [[file:patches/][patch]] dijalankan dari ~$ANDROID_BUILD_TOP~
+** "linker command failed with exit code 1"
+Error ~clang: error: linker command failed with exit code 1 (use -v to see invocation)~, kemungkinan ini /archlinux-specific/ error.
+Dan error ini sebelum memulai menggunakan device tree independen (masih memakai device tree msm8909 generic).
+- http://stackoverflow.com/questions/36048358/building-android-from-sources-unsupported-reloc-43
+- https://bbs.archlinux.org/viewtopic.php?id=209698
+
+workaround #1:
+#+BEGIN_SRC shell
+cp /usr/bin/ld.gold prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.11-4.6/x86_64-linux/bin/ld
+#+END_SRC
+
+workaround #2:
+
+https://android-review.googlesource.com/#/c/223100/1/core/clang/HOST_x86_common.mk
+
+[[file:patches/0001-fix-build-error-unsupported-reloc-43.patch][patch]]
+** Add permissions for external storage
+gunakan patch [[file:patches/0001-add-permission-for-external-storage.patch][ini]].
+** Tambah fitur TARGET_LIBINIT_DEFINES_FILE
+gunakan patch [[file:patches/0001-init-add-TARGET_LIBINIT_DEFINES_FILE.patch][ini]]
+** "libqc-*"
+*** libqc-skia
+~make: *** No rule to make target 'out/target/product/A16C3H/obj/STATIC_LIBRARIES/libqc-skia_intermediates/export_includes', needed by 'out/target/product/A16C3H/obj/SHARED_LIBRARIES/libskia_intermediates/import_includes'.  Stop.~
+
+Library ini termasuk proprietary qcom, jadi wajar error ini muncul, karena saya tidak memiliki akses untuk source code-nya(yang jelas closed source).
+
+workaround: [[file:patches/0001-remove-libqc-skia.patch][gunakan patch ini]]
+
+*** libqc-art
+~make: *** No rule to make target 'out/target/product/A16C3H/obj/STATIC_LIBRARIES/libqc-art_intermediates/export_includes', needed by 'out/target/product/A16C3H/obj/SHARED_LIBRARIES/libart_intermediates/import_includes'.  Stop.~
+
+Juga bagian dari proprietary qcom.
+
+workaround: [[file:patches/0001-Remove-libqc-art.patch][gunakan patch ini]]
+
+Jadi pastikan sebelum memulai compiling jalankan perintah ~patch -p1 < device/haier/A16C3H/patches/<file>~ dari root folder source tree-nya.
+Untuk distro selain ~archlinux~ jalankan semua patch diatas kecuali patch linker.
+* Compiling
+** clone device tree
+Clone terlebih dahulu device tree ini kedalam source tree dari caf-nya
+#+begin_src sh
+cd device && mkdir haier && git clone git@github.com:alexforsale/android_device_haier_A16C3H.git -b caf/LA.BR.1.2.3-13810-8x09.0
+#+end_src
+
+** extract proprietary
+Seperti yang dibahas di [[*extract-files.sh][extract-files.sh]]
+
+** python environment
+Jika menggunakan ~archlinux~ buat virtual environment untuk python terlebih dahulu, jalankan perintah ini didalam folder source,
+
+
+#+begin_src sh
+cd <ke-top-dari-source-tree-nya>
+#+end_src
+
+#+begin_src sh
+virtualenv2 venv
+#+end_src
+
+virtual environment ini harus diaktifkan setiap hendak memulai compiling, dengan perintah:
+
+#+begin_src sh
+source venv/bin/activate
+#+end_src
+
+Distro selain ~archlinux~ atau distro lain yang versi python defaultnya ~2.7~ tidak perlu melakukan perintah diatas.
+Cek lagi versi python-nya dengan perintah ~python -V~.
+
+** Set up environment android
+Jalankan perintah ini
+
+#+begin_src sh
+source build/envsetup.sh
+#+end_src
+
+Jalankan perintah ~lunch~ dan pilih A16C3H, atau bisa langsung saja
+
+#+begin_src sh
+source lunch aosp_A16C3H-userdebug
+#+end_src
+
+dan untuk actual compiling-nya
+
+#+begin_src sh
+source make otapackage -j4 (sesuaikan dengan hardware pc-nya)
+#+end_src
+
+dan ROM akan tersedia di folder out/target/product/A16C3H/

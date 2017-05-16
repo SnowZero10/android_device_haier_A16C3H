@@ -1,0 +1,42 @@
+From 88b9a4c7c5de055373110c742d87cfa92da6789f Mon Sep 17 00:00:00 2001
+From: k5t4j5 <boogs19.kj@gmail.com>
+Date: Fri, 17 Apr 2015 02:58:39 +0000
+Subject: [PATCH] Remove libqc-art
+
+Change-Id: I11faa9e7f522b430ac1d63ffbfd067ad02fe3cd8
+---
+ compiler/Android.mk | 3 ---
+ runtime/Android.mk  | 3 ---
+ 2 files changed, 6 deletions(-)
+
+diff --git art/compiler/Android.mk art/compiler/Android.mk
+index da97e47..b0ec8fb 100644
+--- art/compiler/Android.mk
++++ art/compiler/Android.mk
+@@ -259,9 +259,6 @@ $$(ENUM_OPERATOR_OUT_GEN): $$(GENERATED_SRC_DIR)/%_operator_out.cc : $(LOCAL_PAT
+   LOCAL_ADDITIONAL_DEPENDENCIES += $(LOCAL_PATH)/Android.mk
+   ifeq ($$(art_target_or_host),target)
+     LOCAL_SHARED_LIBRARIES += libcutils libvixl
+-    ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
+-      LOCAL_WHOLE_STATIC_LIBRARIES += libqc-art-compiler
+-    endif
+     include $(BUILD_SHARED_LIBRARY)
+   else # host
+     LOCAL_STATIC_LIBRARIES += libcutils libvixl
+diff --git art/runtime/Android.mk art/runtime/Android.mk
+index 20b82a4..84f2248 100644
+--- art/runtime/Android.mk
++++ art/runtime/Android.mk
+@@ -427,9 +427,6 @@ $$(ENUM_OPERATOR_OUT_GEN): $$(GENERATED_SRC_DIR)/%_operator_out.cc : $(LOCAL_PAT
+   ifeq ($$(art_target_or_host),target)
+     LOCAL_SHARED_LIBRARIES += libcutils libdl libselinux libutils libsigchain
+     LOCAL_STATIC_LIBRARIES := libziparchive libz
+-    ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
+-	  LOCAL_WHOLE_STATIC_LIBRARIES += libqc-art
+-    endif
+   else # host
+     LOCAL_STATIC_LIBRARIES += libcutils libziparchive-host libz libutils
+     LOCAL_SHARED_LIBRARIES += libsigchain
+-- 
+2.12.2
+
