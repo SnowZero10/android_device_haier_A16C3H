@@ -45,6 +45,8 @@ repo init -u git://codeaurora.org/platform/manifest.git -b release -m LA.BR.1.2.
 
 Tambahkan ~--depth=1~ dibelakang perintah repo sync diatas jika ingin menghemat bandwidth, dengan ini history commit yang didownload dibatasi 1.
 
+Dan untuk sync repository-nya jalankan perintah ~repo sync~ bisa ditambahkan ~-j4~ atau lebih, sesuaikan dengan kecepatan internet juga tentunya.
+
 * Patches and workaround
 Semua patch yang dibutuhkan untuk proses /compiling/ akan disimpan disubfolder patches. Pastinya akan membutuhkan patches dan
 workaround mengingat device ini tidak memiliki source kernel. Semua patch yang ada difolder [[file:patches/][patch]] dijalankan dari ~$ANDROID_BUILD_TOP~
@@ -135,4 +137,4 @@ dan untuk actual compiling-nya
 source make otapackage -j4 (sesuaikan dengan hardware pc-nya)
 #+end_src
 
-dan ROM akan tersedia di folder out/target/product/A16C3H/
+dan ROM akan tersedia di folder ~out/target/product/A16C3H/~
